@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт с Prompt</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+
+            text-align: center;
+            width: 80%;
+            max-width: 400px; /* Ограничение ширины контейнера */
+        }
+
+        .result.success {
+            color: #5cb85c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Данные пользователя</h1>
+        <div class="data" id="userData"></div>
+    </div>
+
+    <script>
+        // Запрашиваем данные у пользователя
+        const name = prompt("Введите ваше имя:");
+        const age = prompt("Введите ваш возраст:");
+        const score = prompt("Введите ваши баллы:");
+
+        // Выводим данные в DOM
+        const userDataDiv = document.getElementById("userData");
+        userDataDiv.innerHTML = `
+            <p>Имя: ${name}</p>
+            <p>Возраст: ${age}</p>
+            <p>Баллы: ${score}</p>
+        `;
+
+        // Проверяем баллы и выводим соответствующее сообщение
+        const resultMessage = document.createElement('p');
+        resultMessage.classList.add('result');
+        if (score < 75) {
+            resultMessage.textContent = "Вы не поступили в институт";
+        } else {
+            resultMessage.textContent = "Вы поступили в институт";
+            resultMessage.classList.add('success');
+        }
+        userDataDiv.appendChild(resultMessage);
+    </script>
+</body>
+</html>
